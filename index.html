@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chat</title>
+</head>
+<body>
+<h1>This is chat</h1>
+<form id="form">
+    <input type="submit" value="Send" />
+    <input type="text" id="msg" />
+</form>
+<div class="chat">
+
+</div>
+</body>
+
+<script>
+    let socket = null
+
+    document.addEventListener('DOMContentLoaded', function () {
+        socket = new WebSocket("ws://localhost:8080/ws");
+
+        socket.onopen = () => {
+            console.log("successfully")
+        }
+
+        socket.onmessage = msg => {
+            console.log("message")
+            console.log(msg.data)
+        }
+    })
+</script>
+</html>
